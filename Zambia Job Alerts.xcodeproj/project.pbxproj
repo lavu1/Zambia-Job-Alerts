@@ -33,32 +33,27 @@
 		C0D300010000000000000001 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = C0D300020000000000000001 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B4F12D922F79A2D2001D1500 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B4F12D772F79A2D1001D1500 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4F12D7E2F79A2D1001D1500;
-			remoteInfo = "Zambia Job Alerts";
-		};
-		B4F12D9C2F79A2D2001D1500 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B4F12D772F79A2D1001D1500 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B4F12D7E2F79A2D1001D1500;
-			remoteInfo = "Zambia Job Alerts";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		B4F12D7F2F79A2D1001D1500 /* Zambia Job Alerts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zambia Job Alerts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F12D912F79A2D2001D1500 /* Zambia Job AlertsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Zambia Job AlertsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F12D9B2F79A2D2001D1500 /* Zambia Job AlertsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Zambia Job AlertsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		B4ADF7212F8024C40059A533 /* Exceptions for "Zambia Job Alerts" folder in "Compile Sources" phase from "Zambia Job Alerts" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = B4F12D7B2F79A2D1001D1500 /* Sources */;
+			membershipExceptions = (
+				Assets.xcassets,
+				"GoogleService-Info.plist",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B4F12D812F79A2D1001D1500 /* Zambia Job Alerts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B4ADF7212F8024C40059A533 /* Exceptions for "Zambia Job Alerts" folder in "Compile Sources" phase from "Zambia Job Alerts" target */,
+			);
 			path = "Zambia Job Alerts";
 			sourceTree = "<group>";
 		};
@@ -106,20 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4F12D8E2F79A2D2001D1500 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4F12D982F79A2D2001D1500 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -137,8 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				B4F12D7F2F79A2D1001D1500 /* Zambia Job Alerts.app */,
-				B4F12D912F79A2D2001D1500 /* Zambia Job AlertsTests.xctest */,
-				B4F12D9B2F79A2D2001D1500 /* Zambia Job AlertsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,52 +170,6 @@
 			productReference = B4F12D7F2F79A2D1001D1500 /* Zambia Job Alerts.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B4F12D902F79A2D2001D1500 /* Zambia Job AlertsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B4F12DA82F79A2D2001D1500 /* Build configuration list for PBXNativeTarget "Zambia Job AlertsTests" */;
-			buildPhases = (
-				B4F12D8D2F79A2D2001D1500 /* Sources */,
-				B4F12D8E2F79A2D2001D1500 /* Frameworks */,
-				B4F12D8F2F79A2D2001D1500 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B4F12D932F79A2D2001D1500 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B4F12D942F79A2D2001D1500 /* Zambia Job AlertsTests */,
-			);
-			name = "Zambia Job AlertsTests";
-			packageProductDependencies = (
-			);
-			productName = "Zambia Job AlertsTests";
-			productReference = B4F12D912F79A2D2001D1500 /* Zambia Job AlertsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B4F12D9A2F79A2D2001D1500 /* Zambia Job AlertsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B4F12DAB2F79A2D2001D1500 /* Build configuration list for PBXNativeTarget "Zambia Job AlertsUITests" */;
-			buildPhases = (
-				B4F12D972F79A2D2001D1500 /* Sources */,
-				B4F12D982F79A2D2001D1500 /* Frameworks */,
-				B4F12D992F79A2D2001D1500 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B4F12D9D2F79A2D2001D1500 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B4F12D9E2F79A2D2001D1500 /* Zambia Job AlertsUITests */,
-			);
-			name = "Zambia Job AlertsUITests";
-			packageProductDependencies = (
-			);
-			productName = "Zambia Job AlertsUITests";
-			productReference = B4F12D9B2F79A2D2001D1500 /* Zambia Job AlertsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,14 +182,6 @@
 				TargetAttributes = {
 					B4F12D7E2F79A2D1001D1500 = {
 						CreatedOnToolsVersion = 26.4;
-					};
-					B4F12D902F79A2D2001D1500 = {
-						CreatedOnToolsVersion = 26.4;
-						TestTargetID = B4F12D7E2F79A2D1001D1500;
-					};
-					B4F12D9A2F79A2D2001D1500 = {
-						CreatedOnToolsVersion = 26.4;
-						TestTargetID = B4F12D7E2F79A2D1001D1500;
 					};
 				};
 			};
@@ -279,28 +204,9 @@
 			projectRoot = "";
 			targets = (
 				B4F12D7E2F79A2D1001D1500 /* Zambia Job Alerts */,
-				B4F12D902F79A2D2001D1500 /* Zambia Job AlertsTests */,
-				B4F12D9A2F79A2D2001D1500 /* Zambia Job AlertsUITests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		B4F12D8F2F79A2D2001D1500 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4F12D992F79A2D2001D1500 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4F12D7B2F79A2D1001D1500 /* Sources */ = {
@@ -310,34 +216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4F12D8D2F79A2D2001D1500 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B4F12D972F79A2D2001D1500 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B4F12D932F79A2D2001D1500 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4F12D7E2F79A2D1001D1500 /* Zambia Job Alerts */;
-			targetProxy = B4F12D922F79A2D2001D1500 /* PBXContainerItemProxy */;
-		};
-		B4F12D9D2F79A2D2001D1500 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B4F12D7E2F79A2D1001D1500 /* Zambia Job Alerts */;
-			targetProxy = B4F12D9C2F79A2D2001D1500 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B4F12DA32F79A2D2001D1500 /* Debug */ = {
@@ -465,14 +344,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Zambia Job Alerts/Zambia Job Alerts.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = dwarf5;
 				DEVELOPMENT_TEAM = 6QYW7YGATJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets *.icon (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.jpeg *.png";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zambia Job Alerts";
@@ -500,14 +383,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Zambia Job Alerts/Zambia Job Alerts.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = dwarf5;
 				DEVELOPMENT_TEAM = 6QYW7YGATJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets *.icon (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.jpeg *.png";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zambia Job Alerts";
@@ -531,92 +418,6 @@
 			};
 			name = Release;
 		};
-		B4F12DA92F79A2D2001D1500 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QYW7YGATJ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.limited.Zambia-Job-AlertsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zambia Job Alerts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Zambia Job Alerts";
-			};
-			name = Debug;
-		};
-		B4F12DAA2F79A2D2001D1500 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QYW7YGATJ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.limited.Zambia-Job-AlertsTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zambia Job Alerts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Zambia Job Alerts";
-			};
-			name = Release;
-		};
-		B4F12DAC2F79A2D2001D1500 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QYW7YGATJ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.limited.Zambia-Job-AlertsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Zambia Job Alerts";
-			};
-			name = Debug;
-		};
-		B4F12DAD2F79A2D2001D1500 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6QYW7YGATJ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.limited.Zambia-Job-AlertsUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Zambia Job Alerts";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,24 +435,6 @@
 			buildConfigurations = (
 				B4F12DA62F79A2D2001D1500 /* Debug */,
 				B4F12DA72F79A2D2001D1500 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4F12DA82F79A2D2001D1500 /* Build configuration list for PBXNativeTarget "Zambia Job AlertsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4F12DA92F79A2D2001D1500 /* Debug */,
-				B4F12DAA2F79A2D2001D1500 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B4F12DAB2F79A2D2001D1500 /* Build configuration list for PBXNativeTarget "Zambia Job AlertsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B4F12DAC2F79A2D2001D1500 /* Debug */,
-				B4F12DAD2F79A2D2001D1500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

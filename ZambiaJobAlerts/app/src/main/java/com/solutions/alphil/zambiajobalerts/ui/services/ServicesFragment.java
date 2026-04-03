@@ -34,11 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicesFragment extends Fragment {
-    private static final int COST_EMAIL_ALERTS = 1;
-    private static final int COST_PHONE_ALERTS = 1;
-    private static final int COST_PRIORITY_JOB = 3;
-    private static final int COST_CV_SERVICE = 5;
-    private static final int COST_CAREER_COACHING = 7;
 
     private ServicesViewModel viewModel;
     private TextView adsWatchedView, jobsViewedView, rewardsView;
@@ -184,7 +179,7 @@ public class ServicesFragment extends Fragment {
 
     // Redeem services based on ads watched
     private void handleRedeem() {
-        int ads = viewModel.getCurrentAdCount();
+        int ads = viewModel.getAdsWatched().getValue();
 
         if (ads >= 10) {
             new MaterialAlertDialogBuilder(requireContext())
@@ -198,31 +193,39 @@ public class ServicesFragment extends Fragment {
                     }, (dialog, which) -> {
                         switch (which) {
                             case 0: // Email Alerts - 1 ad
-                                redeemReward(COST_EMAIL_ALERTS, new EmailJobAlertsFragment());
+                                if (ads >= 1) {
+                                    openFragment(new EmailJobAlertsFragment());
+                                    viewModel.deductAds(1);
+                                }
                                 break;
                             case 1: // Phone Alerts - 1 ad
-                                redeemReward(COST_PHONE_ALERTS, new PhoneJobAlertsFragment());
+                                if (ads >= 1) {
+                                    openFragment(new PhoneJobAlertsFragment());
+                                    viewModel.deductAds(1);
+                                }
                                 break;
                             case 2: // Priority Job Applications - 3 ads
-                                redeemReward(COST_PRIORITY_JOB, new PriorityJobFragment());
+                                if (ads >= 3) {
+                                    openFragment(new PriorityJobFragment());
+                                    viewModel.deductAds(3);
+                                }
                                 break;
                             case 3: // CV Services - 5 ads
-                                if (canAccessReward(COST_CV_SERVICE)) {
+                                if (ads >= 5) {
                                     new MaterialAlertDialogBuilder(requireContext())
                                             .setTitle("Choose CV Service")
                                             .setItems(new String[]{"CV Review / Update (5 ads)", "CV Write from Scratch (5 ads)"}, (dialog2, which2) -> {
-                                                if (which2 == 0) {
-                                                    redeemReward(COST_CV_SERVICE, new CVReviewFragment());
-                                                } else {
-                                                    redeemReward(COST_CV_SERVICE, new CVWriteFragment());
-                                                }
+                                                if (which2 == 0) openFragment(new CVReviewFragment());
+                                                else openFragment(new CVWriteFragment());
+                                                viewModel.deductAds(5);
                                             }).show();
-                                } else {
-                                    showInsufficientCreditsMessage(COST_CV_SERVICE);
                                 }
                                 break;
                             case 4: // Career Coaching - 7 ads
-                                redeemReward(COST_CAREER_COACHING, new CareerCoachingFragment());
+                                if (ads >= 7) {
+                                    openFragment(new CareerCoachingFragment());
+                                    viewModel.deductAds(7);
+                                }
                                 break;
                         }
                     }).show();
@@ -240,33 +243,33 @@ public class ServicesFragment extends Fragment {
 
         if (ads >= 1) {
             options.add("Email Alerts (1 ad)");
-            costs.add(COST_EMAIL_ALERTS);
+            costs.add(1);
             actions.add(() -> openFragment(new EmailJobAlertsFragment()));
 
             options.add("Phone Alerts (1 ad)");
-            costs.add(COST_PHONE_ALERTS);
+            costs.add(1);
             actions.add(() -> openFragment(new PhoneJobAlertsFragment()));
         }
 
         if (ads >= 3) {
             options.add("Priority Job Applications (3 ads)");
-            costs.add(COST_PRIORITY_JOB);
+            costs.add(3);
             actions.add(() -> openFragment(new PriorityJobFragment()));
         }
 
         if (ads >= 5) {
             options.add("CV Review / Update (5 ads)");
-            costs.add(COST_CV_SERVICE);
+            costs.add(5);
             actions.add(() -> openFragment(new CVReviewFragment()));
 
             options.add("CV Write from Scratch (5 ads)");
-            costs.add(COST_CV_SERVICE);
+            costs.add(5);
             actions.add(() -> openFragment(new CVWriteFragment()));
         }
 
         if (ads >= 7) {
             options.add("Career Coaching Session (7 ads)");
-            costs.add(COST_CAREER_COACHING);
+            costs.add(7);
             actions.add(() -> openFragment(new CareerCoachingFragment()));
         }
 
@@ -279,38 +282,13 @@ public class ServicesFragment extends Fragment {
                 .setTitle("Redeem Rewards (" + ads + " ads available)")
                 .setItems(options.toArray(new String[0]), (dialog, which) -> {
                     int cost = costs.get(which);
-                    if (canAccessReward(cost) && viewModel.deductAds(cost)) {
+                    if (ads >= cost) {
+                        viewModel.deductAds(cost);
                         actions.get(which).run();
                     } else {
-                        showInsufficientCreditsMessage(cost);
+                        Toast.makeText(getContext(), "Not enough ads!", Toast.LENGTH_SHORT).show();
                     }
                 }).show();
-    }
-
-    private boolean canAccessReward(int requiredCredits) {
-        return viewModel.getCurrentAdCount() >= requiredCredits;
-    }
-
-    private void redeemReward(int requiredCredits, Fragment fragment) {
-        if (!canAccessReward(requiredCredits)) {
-            showInsufficientCreditsMessage(requiredCredits);
-            return;
-        }
-
-        if (viewModel.deductAds(requiredCredits)) {
-            openFragment(fragment);
-        } else {
-            showInsufficientCreditsMessage(requiredCredits);
-        }
-    }
-
-    private void showInsufficientCreditsMessage(int requiredCredits) {
-        int currentCredits = viewModel.getCurrentAdCount();
-        Toast.makeText(
-                getContext(),
-                "You need " + requiredCredits + " credits to access this reward. Current credits: " + currentCredits,
-                Toast.LENGTH_SHORT
-        ).show();
     }
 
     // Updated reward names
@@ -330,9 +308,9 @@ public class ServicesFragment extends Fragment {
         sb.append("Ads Available: ").append(adsWatched).append("\n\n");
 
         sb.append(adsWatched >= 1 ? "✅ Job Alerts (1 ad each)\n" : "❌ Job Alerts (1 ad)\n");
-        sb.append(adsWatched >= COST_PRIORITY_JOB ? "✅ Priority Job Applications (3 ads)\n" : "❌ Priority Job Applications (3 ads)\n");
-        sb.append(adsWatched >= COST_CV_SERVICE ? "✅ CV Services (5 ads)\n" : "❌ CV Services (5 ads)\n");
-        sb.append(adsWatched >= COST_CAREER_COACHING ? "✅ Career Coaching Session (7 ads)\n" : "❌ Career Coaching Session (7 ads)\n");
+        sb.append(adsWatched >= 3 ? "✅ Priority Job Applications (3 ads)\n" : "❌ Priority Job Applications (3 ads)\n");
+        sb.append(adsWatched >= 5 ? "✅ CV Services (5 ads)\n" : "❌ CV Services (5 ads)\n");
+        sb.append(adsWatched >= 7 ? "✅ Career Coaching Session (7 ads)\n" : "❌ Career Coaching Session (7 ads)\n");
 
         rewardsView.setText(sb.toString());
     }

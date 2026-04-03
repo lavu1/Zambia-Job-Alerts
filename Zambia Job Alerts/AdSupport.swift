@@ -5,15 +5,16 @@ import SwiftUI
 import UIKit
 
 enum AdMobConfig {
-    static let appID = "ca-app-pub-3940256099942544~1458002511"
-    static let appOpenID = "ca-app-pub-3940256099942544/5575463023"
-    static let adaptiveBannerID = "ca-app-pub-3940256099942544/2435281174"
-    static let fixedBannerID = "ca-app-pub-3940256099942544/2934735716"
-    static let interstitialID = "ca-app-pub-3940256099942544/4411468910"
-    static let rewardedID = "ca-app-pub-3940256099942544/1712485313"
-    static let rewardedInterstitialID = "ca-app-pub-3940256099942544/6978759866"
-    static let nativeID = "ca-app-pub-3940256099942544/3986624511"
-    static let nativeVideoID = "ca-app-pub-3940256099942544/2521693316"
+    static let appID = "ca-app-pub-2168080105757285~8431622654"
+    
+    static let appOpenID = "ca-app-pub-2168080105757285/8837159177"
+    static let adaptiveBannerID = "ca-app-pub-2168080105757285/3720563865"
+    static let fixedBannerID = "ca-app-pub-2168080105757285/9099638813"
+    static let interstitialID = "ca-app-pub-2168080105757285/3172002592"
+    static let rewardedID = "ca-app-pub-2168080105757285/7171994767"
+    static let rewardedInterstitialID = "ca-app-pub-2168080105757285/2215910501"
+    static let nativeID = "ca-app-pub-2168080105757285/8691922587"
+    static let nativeVideoID = "ca-app-pub-2168080105757285/8691922587"
 }
 
 @MainActor
@@ -589,10 +590,17 @@ private struct NativeAdRepresentable: UIViewRepresentable {
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let callToActionButton = UIButton(type: .system)
-        callToActionButton.backgroundColor = UIColor(BrandPalette.orange)
-        callToActionButton.tintColor = .white
-        callToActionButton.layer.cornerRadius = 10
-        callToActionButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
+        var callToActionConfiguration = UIButton.Configuration.plain()
+        callToActionConfiguration.baseForegroundColor = .white
+        callToActionConfiguration.background.backgroundColor = UIColor(BrandPalette.orange)
+        callToActionConfiguration.background.cornerRadius = 10
+        callToActionConfiguration.contentInsets = NSDirectionalEdgeInsets(
+            top: 10,
+            leading: 14,
+            bottom: 10,
+            trailing: 14
+        )
+        callToActionButton.configuration = callToActionConfiguration
         callToActionButton.translatesAutoresizingMaskIntoConstraints = false
 
         let mediaView = MediaView()

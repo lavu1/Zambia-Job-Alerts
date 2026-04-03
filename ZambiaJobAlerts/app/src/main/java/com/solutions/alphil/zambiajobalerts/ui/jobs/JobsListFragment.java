@@ -41,8 +41,8 @@ import com.solutions.alphil.zambiajobalerts.ui.rewards.EmailJobAlertsFragment;
 import com.solutions.alphil.zambiajobalerts.ui.services.ServicesFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class JobsListFragment extends Fragment {
 
@@ -52,13 +52,9 @@ public class JobsListFragment extends Fragment {
     private SharedPreferences prefs;
     private RewardedInterstitialAd rewardedInterstitialAd;
     private static final String AD_UNIT_ID = "ca-app-pub-2168080105757285/9306188221";
-    private static final long AD_REFRESH_INTERVAL_MS = TimeUnit.HOURS.toMillis(1);
-    private static final String KEY_REWARDED_AD_REFRESH = "rewarded_interstitial_refresh";
-    private static final String KEY_NATIVE_AD_REFRESH = "native_ads_refresh";
     private List<NativeAd> nativeAdPool = new ArrayList<>();
     private AdLoader adLoader;
     private boolean isDetailsShowing = false;
-    private boolean isRewardedInterstitialLoading = false;
     private static final String NATIVE_AD_UNIT_ID = "ca-app-pub-2168080105757285/5207161115";
 
     @Nullable
@@ -70,7 +66,6 @@ public class JobsListFragment extends Fragment {
         setupViewModel();
         prefs = requireActivity().getSharedPreferences("ad_prefs", Context.MODE_PRIVATE);
         initializeNativeAds();
-        preloadAdsIfNeeded();
         initViews();
         setupRecyclerView();
         setupObservers();
@@ -253,97 +248,59 @@ public class JobsListFragment extends Fragment {
         return displayList;
     }
 
-    private void initializeNativeAds() {
-        adLoader = new AdLoader.Builder(requireContext(), NATIVE_AD_UNIT_ID)
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd nativeAd) {
-                        nativeAdPool.add(nativeAd);
-                        markAdsRefreshed(KEY_NATIVE_AD_REFRESH);
-                        Log.d("AdsDebug", "Native ad loaded. Pool size: " + nativeAdPool.size());
+private void initializeNativeAds() {
+    adLoader = new AdLoader.Builder(requireContext(), NATIVE_AD_UNIT_ID)
+            .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(NativeAd nativeAd) {
+                    nativeAdPool.add(nativeAd);
+                    Log.d("AdsDebug", "Native ad loaded. Pool size: " + nativeAdPool.size());
 
-                        if (viewModel.getJobs().getValue() != null && !viewModel.getJobs().getValue().isEmpty()) {
-                            List<Job> currentJobs = viewModel.getJobs().getValue();
-                            List<Object> displayList = buildDisplayListWithAds(currentJobs);
-                            adapter.updateDisplayList(displayList);
-                        }
+                    // Refresh the list when new ads are loaded
+                    if (viewModel.getJobs().getValue() != null && !viewModel.getJobs().getValue().isEmpty()) {
+                        List<Job> currentJobs = viewModel.getJobs().getValue();
+                        List<Object> displayList = buildDisplayListWithAds(currentJobs);
+                        adapter.updateDisplayList(displayList);
                     }
-                })
-                .withAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError adError) {
-                        Log.e("AdsDebug", "Native ad failed to load: " + adError.getMessage());
-                    }
-                })
-                .build();
-    }
+                }
+            })
+            .withAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    Log.e("AdsDebug", "Native ad failed to load: " + adError.getMessage());
+                }
+            })
+            .build();
+
+    // Load initial ads
+    loadMoreNativeAds(3); // Start with 3 ads
+}
     private void loadMoreNativeAds(int count) {
         if (adLoader != null) {
             adLoader.loadAds(new AdRequest.Builder().build(), count);
         }
     }
 
-    private void preloadAdsIfNeeded() {
-        if (shouldRefreshAds(KEY_NATIVE_AD_REFRESH)) {
-            clearNativeAds();
-            loadMoreNativeAds(3);
-        } else if (nativeAdPool.isEmpty()) {
-            loadMoreNativeAds(3);
-        }
-
-        if (shouldRefreshAds(KEY_REWARDED_AD_REFRESH) || rewardedInterstitialAd == null) {
-            preloadRewardedInterstitialAd();
-        }
-    }
-
-    private void preloadRewardedInterstitialAd() {
-        if (isRewardedInterstitialLoading || rewardedInterstitialAd != null || !isAdded()) {
-            return;
-        }
-
-        isRewardedInterstitialLoading = true;
-        AdRequest adRequest = new AdRequest.Builder().build();
-        RewardedInterstitialAd.load(requireContext(), AD_UNIT_ID, adRequest,
-                new RewardedInterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(RewardedInterstitialAd ad) {
-                        rewardedInterstitialAd = ad;
-                        isRewardedInterstitialLoading = false;
-                        markAdsRefreshed(KEY_REWARDED_AD_REFRESH);
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError loadAdError) {
-                        rewardedInterstitialAd = null;
-                        isRewardedInterstitialLoading = false;
-                    }
-                });
-    }
-
-    private boolean shouldRefreshAds(String key) {
-        long lastRefresh = prefs.getLong(key, 0L);
-        return System.currentTimeMillis() - lastRefresh >= AD_REFRESH_INTERVAL_MS;
-    }
-
-    private void markAdsRefreshed(String key) {
-        prefs.edit().putLong(key, System.currentTimeMillis()).apply();
-    }
-
-    private void clearNativeAds() {
-        for (NativeAd nativeAd : nativeAdPool) {
-            nativeAd.destroy();
-        }
-        nativeAdPool.clear();
-    }
-
     private void showRewardedInterstitialAd(Runnable onAdDismissed) {
         if (rewardedInterstitialAd == null) {
-            preloadRewardedInterstitialAd();
-            onAdDismissed.run();
-            return;
-        }
+            AdRequest adRequest = new AdRequest.Builder().build();
+            RewardedInterstitialAd.load(requireContext(), AD_UNIT_ID, adRequest,
+                    new RewardedInterstitialAdLoadCallback() {
+                        @Override
+                        public void onAdLoaded(RewardedInterstitialAd ad) {
+                            rewardedInterstitialAd = ad;
+                            showLoadedAd(onAdDismissed);
+                        }
 
-        showLoadedAd(onAdDismissed);
+                        @Override
+                        public void onAdFailedToLoad(LoadAdError loadAdError) {
+                            rewardedInterstitialAd = null;
+                            onAdDismissed.run();
+                        }
+                    });
+        } else {
+            showLoadedAd(onAdDismissed);
+        }
     }
 
     private void showLoadedAd(Runnable onAdDismissed) {
@@ -351,14 +308,12 @@ public class JobsListFragment extends Fragment {
             @Override
             public void onAdDismissedFullScreenContent() {
                 rewardedInterstitialAd = null;
-                preloadRewardedInterstitialAd();
                 onAdDismissed.run();
             }
 
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
                 rewardedInterstitialAd = null;
-                preloadRewardedInterstitialAd();
                 onAdDismissed.run();
             }
         });
@@ -371,8 +326,6 @@ public class JobsListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        clearNativeAds();
-        rewardedInterstitialAd = null;
         binding = null;
     }
 
@@ -394,7 +347,6 @@ public class JobsListFragment extends Fragment {
         binding.btnLoadMore.setOnClickListener(v -> viewModel.loadMoreJobs());
 
         binding.swipeRefresh.setOnRefreshListener(() -> {
-            preloadAdsIfNeeded();
             viewModel.loadJobs(true);
         });
 
@@ -453,7 +405,6 @@ public class JobsListFragment extends Fragment {
         binding.pbLoading.setVisibility(View.VISIBLE);
         binding.layoutNoJobs.setVisibility(View.GONE);
         binding.btnRefresh.setVisibility(View.GONE);
-        preloadAdsIfNeeded();
         viewModel.loadJobs(true);
     }
 }

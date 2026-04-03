@@ -41,13 +41,13 @@ public class ServicesViewModel extends AndroidViewModel {
     }
 
     public void addAdWatched() {
-        int newCount = getCurrentAdCount() + 1;
+        int newCount = adsWatched.getValue() + 1;
         adsWatched.setValue(newCount);
         prefs.edit().putInt(KEY_ADS_WATCHED, newCount).apply();
     }
 
     public void addJobViewed() {
-        int newCount = jobsViewed.getValue() != null ? jobsViewed.getValue() + 1 : 1;
+        int newCount = jobsViewed.getValue() + 1;
         jobsViewed.setValue(newCount);
         prefs.edit().putInt(KEY_JOBS_VIEWED, newCount).apply();
     }
@@ -58,19 +58,17 @@ public class ServicesViewModel extends AndroidViewModel {
     }
 
     // NEW: Method to deduct specific number of ads
-    public boolean deductAds(int amount) {
-        int currentAds = getCurrentAdCount();
+    public void deductAds(int amount) {
+        int currentAds = adsWatched.getValue();
         if (currentAds >= amount) {
             int newCount = currentAds - amount;
             adsWatched.setValue(newCount);
             prefs.edit().putInt(KEY_ADS_WATCHED, newCount).apply();
-            return true;
         }
-        return false;
     }
 
     // NEW: Method to get current ad count
     public int getCurrentAdCount() {
-        return adsWatched.getValue() != null ? adsWatched.getValue() : 0;
+        return adsWatched.getValue();
     }
 }

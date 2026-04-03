@@ -22,10 +22,12 @@ public class RefreshDataWorker extends Worker {
         repository.refreshJobs();
         
         // 2. Refresh/Pre-cache Ads
+        // Note: MobileAds must be initialized. Since it's in Application.onCreate, it should be.
+        // Ad loading must happen on the main thread for some versions/types, 
+        // but AdManager.loadInterstitialAd uses the standard API which handles threads.
+        // However, WorkManager runs on a background thread.
         try {
-            if (AdManager.getInstance().shouldRefreshInterstitial()) {
-                AdManager.getInstance().loadInterstitialAd(getApplicationContext());
-            }
+            AdManager.getInstance().loadInterstitialAd(getApplicationContext());
         } catch (Exception e) {
             Log.e("RefreshDataWorker", "Error pre-caching ads: " + e.getMessage());
         }

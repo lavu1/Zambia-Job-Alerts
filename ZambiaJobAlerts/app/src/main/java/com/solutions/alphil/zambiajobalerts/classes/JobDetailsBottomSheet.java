@@ -1,9 +1,9 @@
 package com.solutions.alphil.zambiajobalerts.classes;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +71,6 @@ public class JobDetailsBottomSheet extends BottomSheetDialogFragment {
         viewModel = new ViewModelProvider(this).get(JobsViewModel.class);
         savedJobsViewModel = new ViewModelProvider(requireActivity()).get(SavedJobsViewModel.class);
 
-        binding.contentLayout.setVisibility(View.GONE);
-        binding.progressBar.setVisibility(View.VISIBLE);
         loadJobDetails();
         setupClickListeners();
         
@@ -93,7 +91,6 @@ public class JobDetailsBottomSheet extends BottomSheetDialogFragment {
 
     private void loadJobDetails() {
         binding.progressBar.setVisibility(View.VISIBLE);
-        binding.contentLayout.setVisibility(View.GONE);
         
         if (jobId != -1) {
             repository.fetchJobDetails(jobId, new JobRepository.ResponseListener<JobEntity>() {
@@ -134,8 +131,6 @@ public class JobDetailsBottomSheet extends BottomSheetDialogFragment {
     private void onLoadError(String error) {
         requireActivity().runOnUiThread(() -> {
             binding.progressBar.setVisibility(View.GONE);
-            renderFallbackState(error);
-            binding.contentLayout.setVisibility(View.VISIBLE);
             Toast.makeText(getContext(), "Offline: " + error, Toast.LENGTH_SHORT).show();
         });
     }
@@ -147,7 +142,6 @@ public class JobDetailsBottomSheet extends BottomSheetDialogFragment {
         binding.tvDate.setText(job.getFormattedDate());
         binding.tvJobType.setText(job.getJobType());
 
-        binding.ivLogo.setImageResource(R.drawable.ic_jobs);
         if (job.getFeaturedImage() != null && !job.getFeaturedImage().isEmpty()) {
             Glide.with(this).load(job.getFeaturedImage()).into(binding.ivLogo);
         }
@@ -173,64 +167,12 @@ public class JobDetailsBottomSheet extends BottomSheetDialogFragment {
                 binding.tvDescription.setText(Html.fromHtml(fullDescription, Html.FROM_HTML_MODE_COMPACT));
                 binding.adViewDescription.setVisibility(View.VISIBLE);
             }
-        } else {
-            String excerpt = job.getExcerpt();
-            if (excerpt != null && !excerpt.isEmpty()) {
-                binding.tvDescription.setText(Html.fromHtml(excerpt, Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                binding.tvDescription.setText("Job details are not available right now. Pull to refresh the jobs list when you are back online.");
-            }
-            binding.tvDescriptionBottom.setVisibility(View.GONE);
-            binding.adViewDescription.setVisibility(View.GONE);
         }
-    }
-
-    private void renderFallbackState(String error) {
-        binding.tvTitle.setText("Job details unavailable");
-        binding.tvCompany.setText("");
-        binding.tvLocation.setText("");
-        binding.tvDate.setText("");
-        binding.tvJobType.setText("");
-        binding.ivLogo.setImageResource(R.drawable.ic_jobs);
-        binding.tvDescription.setText("We could not load the full job details. " +
-                "If you are offline, refresh the jobs list after reconnecting.\n\nReason: " + error);
-        binding.tvDescriptionBottom.setVisibility(View.GONE);
-        binding.adViewDescription.setVisibility(View.GONE);
-        binding.adViewDetails.setVisibility(View.GONE);
-        binding.btnApply.setEnabled(false);
     }
 
     private void setupClickListeners() {
         binding.btnApply.setOnClickListener(v -> {
-            if (currentJob == null) {
-                Toast.makeText(getContext(), "Job details are still loading", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String applicationLink = currentJob.getApplication();
-            if (applicationLink == null || applicationLink.trim().isEmpty()) {
-                applicationLink = currentJob.getLink();
-            }
-
-            if (applicationLink == null || applicationLink.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Application link is not available", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Intent intent;
-            String trimmedLink = applicationLink.trim();
-            if (trimmedLink.contains("@") && !trimmedLink.startsWith("http")) {
-                intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + trimmedLink));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Application for " + currentJob.getTitle());
-            } else {
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(trimmedLink));
-            }
-
-            try {
-                startActivity(intent);
-            } catch (Exception exception) {
-                Toast.makeText(getContext(), "No app found to open the application link", Toast.LENGTH_SHORT).show();
-            }
+            // Application logic
         });
 
         binding.btnShare.setOnClickListener(v -> {

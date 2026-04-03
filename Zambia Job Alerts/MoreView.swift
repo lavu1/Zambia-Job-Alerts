@@ -4,8 +4,8 @@ struct MoreView: View {
     @ObservedObject var notificationManager: NotificationManager
     let adCoordinator: AdCoordinator
     @State private var statusMessage: String?
-    private let appShareURL = URL(string: "https://zambiajobalerts.com")!
-    private let appShareMessage = "Check out Zambia Job Alerts for the latest jobs and career opportunities: https://zambiajobalerts.com"
+    private let appShareURL = URL(string: "https://apps.apple.com/app/id6761562142")!
+    private let appShareMessage = "Check out Zambia Job Alerts for the latest jobs and career opportunities: https://apps.apple.com/app/id6761562142"
 
     var body: some View {
         NavigationStack {

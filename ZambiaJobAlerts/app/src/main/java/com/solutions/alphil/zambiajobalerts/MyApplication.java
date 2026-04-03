@@ -21,9 +21,7 @@ public class MyApplication extends Application {
 
         MobileAds.initialize(this, initializationStatus -> {
             // Pre-cache ads after initialization
-            if (AdManager.getInstance().shouldRefreshInterstitial()) {
-                AdManager.getInstance().loadInterstitialAd(this);
-            }
+            AdManager.getInstance().loadInterstitialAd(this);
         });
 
         // Schedule periodic background sync
@@ -50,7 +48,7 @@ public class MyApplication extends Application {
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
                 "JobSyncWork",
-                androidx.work.ExistingPeriodicWorkPolicy.UPDATE,
+                androidx.work.ExistingPeriodicWorkPolicy.KEEP,
                 syncRequest
         );
     }
