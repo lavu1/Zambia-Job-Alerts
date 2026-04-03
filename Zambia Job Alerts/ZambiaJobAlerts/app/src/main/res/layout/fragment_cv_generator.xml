@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true"
+    android:id="@+id/mainScrollView"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Generate Professional CV or Cover Letter"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@drawable/rounded_corner"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Document Type *"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/selectedTypeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CV/Resume"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/selectTypeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change"
+                android:layout_marginStart="10dp"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Format *"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/selectedFormatText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PDF Document"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/selectFormatBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change"
+                android:layout_marginStart="10dp"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/toneSelectionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Writing Tone"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/selectedToneText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Formal"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@drawable/edittext_background"
+                    android:gravity="center_vertical"/>
+
+                <Button
+                    android:id="@+id/selectToneBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Information"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Full Name *"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:autofillHints="name"
+            android:inputType="textPersonName"
+            android:background="@drawable/edittext_background"
+            android:textColor="#ffffff"
+            android:hint="Enter full name"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email *"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/edittext_background"
+            android:textColor="#ffffff"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number *"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:autofillHints="phone"
+            android:background="@drawable/edittext_background"
+            android:textColor="#ffffff"
+            android:hint="Enter phone number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/cvFields"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CV Details"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Position/Job Title *"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/positionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:background="@drawable/edittext_background"
+                android:textColor="#ffffff"
+                android:hint="e.g., Software Engineer"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Education Background"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/educationInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:autofillHints="education"
+                android:background="@drawable/edittext_background"
+                android:inputType="textMultiLine"
+                android:textColor="#ffffff"
+                android:hint="Enter your education details..."
+                android:minLines="3"
+                android:gravity="top|start"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Work Experience"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/experienceInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:autofillHints="work_experience"
+                android:background="@drawable/edittext_background"
+                android:inputType="textMultiLine"
+                android:textColor="#ffffff"
+                android:hint="Describe your work experience..."
+                android:minLines="3"
+                android:gravity="top|start"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skills"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/skillsInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="80dp"
+                android:autofillHints="skills"
+                android:background="@drawable/edittext_background"
+                android:textColor="#ffffff"
+                android:hint="List your skills..."
+                android:minLines="2"
+                android:gravity="top|start"
+                android:padding="12dp"
+                android:layout_marginBottom="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/coverLetterFields"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cover Letter Details"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Target Company *"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/companyInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:background="@drawable/edittext_background"
+                android:textColor="#ffffff"
+                android:hint="Enter company name"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Position Applying For *"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/positionApplyingInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:background="@drawable/edittext_background"
+                android:textColor="#ffffff"
+                android:hint="Enter position title"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Experience Summary"
+                android:textColor="#000000"/>
+            <EditText
+                android:id="@+id/experienceSummaryInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textMultiLine"
+                android:textColor="#ffffff"
+                android:hint="Briefly describe your relevant experience..."
+                android:minLines="3"
+                android:gravity="top|start"
+                android:padding="12dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Additional Information"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/addNotesInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:autofillHints="additional_notes"
+            android:inputType="textMultiLine"
+            android:background="@drawable/edittext_background"
+            android:textColor="#ffffff"
+            android:hint="Any additional information..."
+            android:minLines="2"
+            android:gravity="top|start"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Generate Document"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/viewGeneratedBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="View My Generated Documents"
+            android:layout_marginTop="5dp"
+            android:background="@color/cardview_dark_background"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generation Results"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#f8f9fa"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:id="@+id/resultsLayout">
+
+            <TextView
+                android:id="@+id/resultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
+                android:maxHeight="300dp"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                android:padding="15dp"
+                android:scrollbars="vertical"
+                android:textIsSelectable="true"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="Your generated content will appear here..."
+                android:textSize="14sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/copyTextBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="Copy Text"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="#ffffff"/>
+
+                <Button
+                    android:id="@+id/downloadBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="Download File"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/cardview_dark_background"
+                    android:textColor="#ffffff"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Advertisement"
+            android:textSize="10sp"
+            android:textColor="#888888"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"/>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2168080105757285/8585392673" />
+
+    </LinearLayout>
+</ScrollView>
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:padding="16dp"-->
+<!--    android:fillViewport="true"-->
+<!--    android:id="@+id/mainScrollView">-->
+
+<!--    <LinearLayout-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--            android:id="@+id/adViewTop"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:text="Generate Professional CV or Cover Letter"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="#000"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="12dp"-->
+<!--            android:background="@drawable/rounded_corner"/>-->
+
+<!--        &lt;!&ndash; Document Type Selection &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Select Document Type *"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="5dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="15dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/selectedTypeText"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="CV/Resume"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:textSize="16sp"-->
+<!--                android:padding="12dp"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:gravity="center_vertical"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/selectTypeBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Change"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:background="@color/colorPrimary"-->
+<!--                android:textColor="#ffffff"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Format Selection &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Select Format *"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="5dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="15dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/selectedFormatText"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="PDF Document"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:textSize="16sp"-->
+<!--                android:padding="12dp"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:gravity="center_vertical"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/selectFormatBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Change"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:background="@color/colorPrimary"-->
+<!--                android:textColor="#ffffff"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Tone Selection (for cover letters) &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/toneSelectionLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_marginBottom="15dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Writing Tone"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginBottom="5dp"/>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/selectedToneText"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Formal"-->
+<!--                    android:textColor="#ffffff"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:background="@drawable/edittext_background"-->
+<!--                    android:gravity="center_vertical"/>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/selectToneBtn"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Change"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:background="@color/colorPrimary"-->
+<!--                    android:textColor="#ffffff"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Personal Information &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Personal Information"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Full Name *"-->
+<!--            android:textColor="#000000"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/nameInput"-->
+<!--            android:autofillHints="name"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:hint="Enter full name"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Email *"-->
+<!--            android:textColor="#000000"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/emailInput"-->
+<!--            android:autofillHints="emailAddress"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:hint="Enter email"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Phone Number *"-->
+<!--            android:textColor="#000000"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/phoneInput"-->
+<!--            android:autofillHints="phone"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:hint="Enter phone number"-->
+<!--            android:inputType="phone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_marginBottom="15dp"/>-->
+
+<!--        &lt;!&ndash; CV Specific Fields &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/cvFields"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="visible">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="CV Details"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="14sp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Position/Job Title *"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/positionInput"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="e.g., Software Engineer, Marketing Manager"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Education Background"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/educationInput"-->
+<!--                android:autofillHints="education"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:inputType="textMultiLine"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="Enter your education details, degrees, certifications..."-->
+<!--                android:minLines="3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Work Experience"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/experienceInput"-->
+<!--                android:autofillHints="work_experience"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:inputType="textMultiLine"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="Describe your work experience, previous roles, achievements..."-->
+<!--                android:minLines="3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Skills"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/skillsInput"-->
+<!--                android:autofillHints="skills"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="List your skills, technical abilities, languages..."-->
+<!--                android:minLines="2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="15dp"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Cover Letter Specific Fields &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/coverLetterFields"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Cover Letter Details"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="14sp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Target Company *"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/companyInput"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="Enter company name"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Position Applying For *"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/positionApplyingInput"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="Enter position title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Experience Summary"-->
+<!--                android:textColor="#000000"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/experienceSummaryInput"-->
+<!--                android:background="@drawable/edittext_background"-->
+<!--                android:inputType="textMultiLine"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:hint="Briefly describe your relevant experience and qualifications..."-->
+<!--                android:minLines="3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; Additional Information &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Additional Information"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/addNotesInput"-->
+<!--            android:autofillHints="additional_notes"-->
+<!--            android:inputType="textMultiLine"-->
+<!--            android:background="@drawable/edittext_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:hint="Any additional information, specific requirements, or special instructions..."-->
+<!--            android:minLines="2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_marginBottom="20dp"/>-->
+
+<!--        &lt;!&ndash; Action Buttons &ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/submitButton"-->
+<!--            android:text="Generate Document"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/viewGeneratedBtn"-->
+<!--            android:text="View My Generated Documents"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/cardview_dark_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:layout_marginBottom="20dp"/>-->
+
+<!--        &lt;!&ndash; Results Section &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Generation Results"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16sp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="10dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:background="#f8f9fa"-->
+<!--            android:padding="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/resultsLayout">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/resultTextView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:minHeight="150dp"-->
+<!--                android:maxHeight="300dp"-->
+<!--                android:background="#ffffff"-->
+<!--                android:textColor="#000000"-->
+<!--                android:padding="15dp"-->
+<!--                android:scrollbars="vertical"-->
+<!--                android:textIsSelectable="true"-->
+<!--                android:autoLink="web"-->
+<!--                android:linksClickable="true"-->
+<!--                android:text="Your generated content will appear here..."-->
+<!--                android:textSize="14sp"/>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="10dp">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/copyTextBtn"-->
+<!--                    android:text="Copy Text"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_marginEnd="5dp"-->
+<!--                    android:background="@color/colorPrimary"-->
+<!--                    android:textColor="#ffffff"/>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/downloadBtn"-->
+<!--                    android:text="Download File"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:background="@color/cardview_dark_background"-->
+<!--                    android:textColor="#ffffff"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--            android:id="@+id/adViewBottom"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-2168080105757285/8585392673" />-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="document_types">
+        <item>CV/Resume</item>
+        <item>Cover Letter</item>
+    </string-array>
+
+    <string-array name="document_formats">
+        <item>PDF Document</item>
+        <item>Text Only</item>
+    </string-array>
+
+    <string-array name="letter_tones">
+        <item>Formal</item>
+        <item>Professional</item>
+        <item>Confident</item>
+        <item>Friendly</item>
+        <item>Enthusiastic</item>
+    </string-array>
+</resources>

@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Complete tasks to earn points"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="4dp"
+        android:background="@drawable/rounded_corner"
+        android:padding="12dp"
+        android:textStyle="bold" />
+    <TextView android:id="@+id/jobsViewed"
+        android:text="@string/jobs_viewed_0"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/countedValue"
+            android:text="@string/count_watched_0"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"/>
+
+    <TextView android:id="@+id/rewardsText"
+        android:text="@string/current_rewards"
+        android:layout_marginTop="12dp"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button android:id="@+id/watchAdButton"
+        android:text="@string/watch_ad_to_earn_reward"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button android:id="@+id/redeemButton"
+        android:text="@string/redeem_points"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="16dp"-->
+<!--    android:gravity="center"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/adViewServicesmain"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        ads:adSize="BANNER"-->
+<!--        ads:adUnitId="ca-app-pub-2168080105757285/8585392673" />-->
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:text="@string/watch_ads"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="#000000"-->
+<!--        android:lineSpacingExtra="4dp"-->
+<!--        android:background="@drawable/rounded_corner"-->
+<!--        android:padding="12dp"-->
+<!--        android:textStyle="bold" />-->
+
+<!--    <TextView android:id="@+id/jobsViewed"-->
+<!--        android:text="@string/jobs_viewed_0"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="#000000"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <TextView android:id="@+id/adsWatched"-->
+<!--        android:text="@string/ads_watched_0"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="#000000"/>-->
+
+<!--    <TextView android:id="@+id/rewardsText"-->
+<!--        android:text="@string/current_rewards"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="#000000"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+<!--    <com.google.android.gms.ads.AdView-->
+<!--        xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/adViewServicesmainBottom"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        ads:adSize="BANNER"-->
+<!--        ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />-->
+
+<!--    <Button android:id="@+id/watchAdButton"-->
+<!--        android:text="@string/watch_ad_to_earn_reward"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <Button android:id="@+id/redeemButton" android:text="@string/redeem_points"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_width="match_parent" android:layout_height="wrap_content"/>-->
+<!--</LinearLayout>-->

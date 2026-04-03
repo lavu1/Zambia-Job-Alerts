@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/receive_sms"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:lineSpacingExtra="4dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_corner"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="@string/enter_phone_number"/>
+
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp"
+            android:autofillHints="phone"
+            android:background="@color/cardview_dark_background"
+            android:textColor="#ffffff"
+            android:padding="12dp"
+            android:hint="@string/enter_phone_number"
+            android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="@string/job_categories_it_finance_etc"/>
+
+        <EditText
+            android:id="@+id/jobCategoryInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:minHeight="48dp"
+            android:autofillHints="text"
+            android:inputType="text"
+            android:background="@color/cardview_dark_background"
+            android:textColor="#ffffff"
+            android:padding="12dp"
+            android:hint="@string/job_categories_it_finance_etc"/>
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/activate_alerts"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advertisement"
+            android:textSize="10sp"
+            android:textColor="#888888"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"/>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewPhoneJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />
+
+    </LinearLayout>
+</ScrollView>
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:fillViewport="true"-->
+<!--    android:background="#FFFFFF">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:text="@string/receive_sms"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textColor="#000"-->
+<!--            android:lineSpacingExtra="4dp"-->
+<!--            android:padding="12dp"-->
+<!--            android:background="@drawable/rounded_corner"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="@string/enter_phone_number"/>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/phoneInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:autofillHints="phone"-->
+<!--            android:background="@color/cardview_dark_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:padding="12dp"-->
+<!--            android:hint="@string/enter_phone_number"-->
+<!--            android:inputType="phone"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="@string/job_categories_it_finance_etc"/>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/jobCategoryInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:autofillHints="text"-->
+<!--            android:inputType="text"-->
+<!--            android:background="@color/cardview_dark_background"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:padding="12dp"-->
+<!--            android:hint="@string/job_categories_it_finance_etc"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/submitButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:text="@string/activate_alerts"/>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="30dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Advertisement"-->
+<!--            android:textSize="10sp"-->
+<!--            android:textColor="#888888"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginBottom="4dp"/>-->
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/adViewPhoneJob"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>&lt;!&ndash;<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+
+<!--&lt;!&ndash;    android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:padding="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:layout_height="match_parent">&ndash;&gt;-->
+<!--&lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_margin="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="@string/receive_sms"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textSize="14sp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="#000"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:lineSpacingExtra="4dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:padding="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@drawable/rounded_corner"&ndash;&gt;-->
+<!--&lt;!&ndash;         />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="@string/enter_phone_number"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <EditText android:id="@+id/phoneInput"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:autofillHints="text"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@color/cardview_dark_background"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="#ffffff"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:hint="@string/enter_phone_number"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:inputType="phone"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="@string/job_categories_it_finance_etc"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/jobCategoryInput"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:autofillHints="text"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:inputType="text"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@color/cardview_dark_background"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textColor="#ffffff"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:hint="@string/job_categories_it_finance_etc"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <Button&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/submitButton"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="@string/activate_alerts"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <com.google.android.gms.ads.AdView&ndash;&gt;-->
+<!--&lt;!&ndash;        xmlns:ads="http://schemas.android.com/apk/res-auto"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/adViewPhoneJob"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        ads:adSize="BANNER"&ndash;&gt;-->
+<!--&lt;!&ndash;        ads:adUnitId="ca-app-pub-2168080105757285/1575161576" />&ndash;&gt;-->
+<!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->

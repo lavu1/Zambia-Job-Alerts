@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "677192429476",
+    "project_id": "zambiajobalerts",
+    "storage_bucket": "zambiajobalerts.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677192429476:android:7f4522ca957bb580e31b31",
+        "android_client_info": {
+          "package_name": "com.alphil.networks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIBO9L6LVJ7SUPGvkh-Cx-iExaPhjWmSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677192429476:android:205f47545f2c0e1ee31b31",
+        "android_client_info": {
+          "package_name": "com.solutions.alphil.zambiajobalerts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIBO9L6LVJ7SUPGvkh-Cx-iExaPhjWmSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
