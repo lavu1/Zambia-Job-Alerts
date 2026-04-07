@@ -351,8 +351,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1.0;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEBUG_INFORMATION_VERSION = dwarf5;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_TEAM = 6QYW7YGATJ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets *.icon (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.jpeg *.png";
@@ -365,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.Zambia-Job-Alerts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -390,8 +390,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.1.0;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEBUG_INFORMATION_VERSION = dwarf5;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_TEAM = 6QYW7YGATJ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets *.icon (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.jpeg *.png";
@@ -404,7 +404,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alphil.networks.Zambia-Job-Alerts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

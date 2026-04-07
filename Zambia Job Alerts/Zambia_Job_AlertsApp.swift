@@ -51,6 +51,8 @@ struct Zambia_Job_AlertsApp: App {
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+    private let broadcastTopic = "all_users"
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -102,6 +104,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         UserDefaults.standard.set(fcmToken, forKey: NotificationManager.fcmTokenDefaultsKey)
         NotificationCenter.default.post(name: .fcmTokenUpdated, object: fcmToken)
         print("FCM token: \(fcmToken)")
+
+        Messaging.messaging().subscribe(toTopic: broadcastTopic) { error in
+            if let error {
+                print("Failed to subscribe to topic \(self.broadcastTopic): \(error.localizedDescription)")
+                return
+            }
+            print("Subscribed to topic \(self.broadcastTopic)")
+        }
     }
 
     private static func route(from userInfo: [AnyHashable: Any]) -> String? {
