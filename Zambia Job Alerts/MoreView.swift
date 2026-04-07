@@ -1,8 +1,10 @@
+import StoreKit
 import SwiftUI
 
 struct MoreView: View {
     @ObservedObject var notificationManager: NotificationManager
     let adCoordinator: AdCoordinator
+    @Environment(\.requestReview) private var requestReview
     @State private var statusMessage: String?
     private let appShareURL = URL(string: "https://apps.apple.com/app/id6761562142")!
     private let appShareMessage = "Check out Zambia Job Alerts for the latest jobs and career opportunities: https://apps.apple.com/app/id6761562142"
@@ -29,6 +31,11 @@ struct MoreView: View {
                         message: Text(appShareMessage)
                     ) {
                         Label("Share App", systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        requestReview()
+                    } label: {
+                        Label("Rate App", systemImage: "star.bubble")
                     }
 //                    Link("Visit Website", destination: URL(string: "https://zambiajobalerts.com")!)
                     Link("Contact Support", destination: URL(string: "mailto:contact@zambiajobalerts.com")!)

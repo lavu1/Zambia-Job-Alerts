@@ -1,3 +1,4 @@
+import StoreKit
 import SwiftUI
 
 struct ContentView: View {
@@ -11,6 +12,12 @@ struct ContentView: View {
     @State private var presentedJob: PresentedJob?
     @State private var routeMessage: String?
     @AppStorage("notifications.launchPromptAttempted") private var notificationLaunchPromptAttempted = false
+    @AppStorage("review.jobOpenCount") private var reviewJobOpenCount = 0
+    @AppStorage("review.savedCount") private var reviewSavedCount = 0
+    @AppStorage("review.lastPromptOpenCount") private var reviewLastPromptOpenCount = 0
+    @AppStorage("review.lastPromptSavedCount") private var reviewLastPromptSavedCount = 0
+    @AppStorage("review.promptedOnce") private var reviewPromptedOnce = false
+    @Environment(\.requestReview) private var requestReview
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -118,6 +125,8 @@ struct ContentView: View {
             Task {
                 await notificationManager.syncSavedJobsReminder(savedJobs: savedJobs)
             }
+            reviewSavedCount = savedJobs.count
+            maybeRequestReview(triggeredBy: .save)
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
@@ -148,6 +157,8 @@ struct ContentView: View {
 
     private func openJob(_ job: JobListing) {
         print("[JobOpen] tap id=\(job.id) slug=\(job.slug) title=\(job.titleText)")
+        reviewJobOpenCount += 1
+        maybeRequestReview(triggeredBy: .jobOpen)
         adCoordinator.presentInterstitialIfNeeded {
             print("[JobOpen] callback after interstitial id=\(job.id)")
             Task { @MainActor in
@@ -268,6 +279,40 @@ struct ContentView: View {
             self.presentedJob = presentedJob
         }
     }
+
+    private func maybeRequestReview(triggeredBy trigger: ReviewTrigger) {
+        guard scenePhase == .active else {
+            return
+        }
+
+        let hasMeaningfulUsage = reviewJobOpenCount >= 5 || reviewSavedCount >= 3
+        guard hasMeaningfulUsage else {
+            return
+        }
+
+        let opensSinceLastPrompt = reviewJobOpenCount - reviewLastPromptOpenCount
+        let savesSinceLastPrompt = reviewSavedCount - reviewLastPromptSavedCount
+        guard opensSinceLastPrompt >= 5 || savesSinceLastPrompt >= 2 || !reviewPromptedOnce else {
+            return
+        }
+
+        let promptChance: Int
+        switch trigger {
+        case .jobOpen:
+            promptChance = 6
+        case .save:
+            promptChance = 4
+        }
+
+        guard Int.random(in: 1...promptChance) == 1 else {
+            return
+        }
+
+        reviewPromptedOnce = true
+        reviewLastPromptOpenCount = reviewJobOpenCount
+        reviewLastPromptSavedCount = reviewSavedCount
+        requestReview()
+    }
 }
 
 private struct PresentedJob: Identifiable {
@@ -287,4 +332,9 @@ enum AppTab: Hashable {
     case saved
     case services
     case more
+}
+
+private enum ReviewTrigger {
+    case jobOpen
+    case save
 }
