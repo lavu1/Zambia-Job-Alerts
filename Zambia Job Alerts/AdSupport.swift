@@ -416,7 +416,7 @@ private struct BannerAdRepresentable: UIViewRepresentable {
     }
 }
 
-private final class BannerHostingView: UIView {
+private final class BannerHostingView: UIView, BannerViewDelegate {
     private let bannerView = BannerView()
     private var adUnitID: String?
     private var usesAdaptiveSizing = false
@@ -426,7 +426,9 @@ private final class BannerHostingView: UIView {
         super.init(frame: frame)
         clipsToBounds = true
         backgroundColor = .clear
+
         bannerView.translatesAutoresizingMaskIntoConstraints = false
+        bannerView.delegate = self
         addSubview(bannerView)
 
         NSLayoutConstraint.activate([
@@ -445,6 +447,7 @@ private final class BannerHostingView: UIView {
         self.usesAdaptiveSizing = usesAdaptiveSizing
         bannerView.adUnitID = adUnitID
         bannerView.rootViewController = UIApplication.shared.topViewController
+        bannerView.delegate = self
         setNeedsLayout()
     }
 
@@ -466,6 +469,14 @@ private final class BannerHostingView: UIView {
             : AdSizeBanner
         bannerView.rootViewController = UIApplication.shared.topViewController
         bannerView.load(Request())
+    }
+
+    func bannerViewDidReceiveAd(_ bannerView: BannerView) {
+        print("[BannerAd] didReceiveAd unit=\(bannerView.adUnitID ?? "unknown")")
+    }
+
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: any Error) {
+        print("[BannerAd] didFailToReceiveAd unit=\(bannerView.adUnitID ?? "unknown") error=\(error.localizedDescription)")
     }
 }
 

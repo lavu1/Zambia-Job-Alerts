@@ -32,6 +32,8 @@ struct HomeView: View {
                                 )
                             }
                         }
+
+                        browseJobsCard
                     }
                 }
                 .padding(20)
@@ -100,6 +102,31 @@ struct HomeView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
+    }
+
+    private var browseJobsCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Browse More Jobs")
+                .font(.headline)
+                .foregroundStyle(BrandPalette.ink)
+
+            Text("See the full job feed, search vacancies, and load more listings from the Jobs tab.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Button("Browse Jobs") {
+                openJobsTab()
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(BrandPalette.orange)
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
+        )
     }
 }
 

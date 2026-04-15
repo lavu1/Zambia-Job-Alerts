@@ -7,7 +7,6 @@ struct HTMLTextView: View {
     var body: some View {
         Text(attributedContent)
             .font(.body)
-            .foregroundStyle(.primary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
             .textSelection(.enabled)
@@ -35,8 +34,8 @@ private extension String {
             margin: 0;
             padding: 0;
             font: -apple-system-body;
-            color: \(UIColor.label.hexString);
-            background-color: transparent;
+            color: #111111;
+            background-color: #FFFFFF;
             overflow-wrap: break-word;
             word-wrap: break-word;
         }
@@ -75,7 +74,7 @@ private extension String {
         let range = NSRange(location: 0, length: attributed.length)
         attributed.addAttributes(
             [
-                .foregroundColor: UIColor.label,
+                .foregroundColor: UIColor(red: 17 / 255, green: 17 / 255, blue: 17 / 255, alpha: 1),
                 .font: UIFont.preferredFont(forTextStyle: .body)
             ],
             range: range

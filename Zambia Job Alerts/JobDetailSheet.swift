@@ -8,6 +8,7 @@ struct JobDetailSheet: View {
     @ObservedObject var savedJobsStore: SavedJobsStore
     let adCoordinator: AdCoordinator
     @StateObject private var loader: JobDetailLoader
+    @State private var htmlSectionHeights: [Int: CGFloat] = [:]
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
 
@@ -27,31 +28,26 @@ struct JobDetailSheet: View {
         )
     }
 
-    private var detailSections: [String] {
-        let primaryText = loader.displayJob.contentHTML.htmlStripped
-        let fallbackText = loader.displayJob.excerptText
-        let sourceText = primaryText.isEmpty ? fallbackText : primaryText
-        let cleanedText = sourceText.condensedWhitespace
-
-        guard !cleanedText.isEmpty else {
+    private var htmlSections: [String] {
+        let html = loader.displayJob.contentHTML.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !html.isEmpty else {
             return []
         }
 
-        let paragraphs = cleanedText
-            .components(separatedBy: ". ")
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-
-        guard paragraphs.count > 3 else {
-            return [cleanedText]
+        let blocks = html.htmlBlocks
+        if blocks.count >= 2 {
+            return blocks.splitIntoBalancedSections()
         }
 
-        let chunkSize = max(1, Int(ceil(Double(paragraphs.count) / 3.0)))
-        return stride(from: 0, to: paragraphs.count, by: chunkSize).map { startIndex in
-            let endIndex = min(startIndex + chunkSize, paragraphs.count)
-            let chunk = paragraphs[startIndex..<endIndex].joined(separator: ". ")
-            return chunk.hasSuffix(".") ? chunk : chunk + "."
+        if html.htmlStripped.count >= 700 {
+            return html.splitNearMiddle().map(\.self)
         }
+
+        guard blocks.count >= 1 else {
+            return [html]
+        }
+
+        return [html]
     }
 
     var body: some View {
@@ -92,8 +88,33 @@ struct JobDetailSheet: View {
                         .buttonStyle(.bordered)
                     }
 
-                    if !loader.displayJob.application.isEmpty {
+                    /*if !loader.displayJob.application.isEmpty {
                         ApplicationActionsView(job: loader.displayJob)
+                    }*/
+                    FixedBannerAdView()
+
+                    if loader.displayJob.contentHTML.isEmpty {
+                        Text(loader.displayJob.excerptText.isEmpty ? "Failed to load job details." : loader.displayJob.excerptText)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        ForEach(Array(htmlSections.enumerated()), id: \.offset) { index, section in
+                            HTMLView(
+                                html: section,
+                                contentHeight: Binding(
+                                    get: { htmlSectionHeights[index, default: 300] },
+                                    set: { htmlSectionHeights[index] = $0 }
+                                )
+                            )
+                            .frame(height: htmlSectionHeights[index, default: 300])
+
+                            if index == 0, htmlSections.count > 1 {
+                                FixedBannerAdView()
+                            }
+                        }
+
+                        FixedBannerAdView()
+
+                        DescriptionActionRow(job: loader.displayJob, savedJobsStore: savedJobsStore)
                     }
 
                     if let errorMessage = loader.errorMessage {
@@ -117,7 +138,7 @@ struct JobDetailSheet: View {
                         )
                     }
 
-                    FixedBannerAdView()
+                    /*FixedBannerAdView()
 
                     if detailSections.isEmpty {
                         Text("Failed to load job details.")
@@ -136,7 +157,7 @@ struct JobDetailSheet: View {
                         }
 
                         FixedBannerAdView()
-                    }
+                    }*/
 
                    /* if let link = URL(string: loader.displayJob.link) {
                         Button("Open Original Website Post") {
@@ -166,6 +187,83 @@ struct JobDetailSheet: View {
                 }
             }
         }
+    }
+
+}
+
+private extension String {
+    var htmlBlocks: [String] {
+        let pattern = #"(?is).*?(</p>|</ul>|</ol>|</li>|</div>|</section>|</article>|</blockquote>|</h[1-6]>|<br\s*/?>)"#
+
+        guard let regex = try? NSRegularExpression(pattern: pattern) else {
+            return [self]
+        }
+
+        let fullRange = NSRange(startIndex..., in: self)
+        let matches = regex.matches(in: self, range: fullRange)
+
+        guard !matches.isEmpty else {
+            return [self]
+        }
+
+        var blocks: [String] = []
+        var currentLocation = startIndex
+
+        for match in matches {
+            guard let range = Range(match.range, in: self) else {
+                continue
+            }
+
+            blocks.append(String(self[currentLocation..<range.upperBound]))
+            currentLocation = range.upperBound
+        }
+
+        let trailing = self[currentLocation...].trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trailing.isEmpty {
+            blocks.append(String(self[currentLocation...]))
+        }
+
+        return blocks.filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    }
+
+    func splitNearMiddle() -> [String] {
+        let midpoint = index(startIndex, offsetBy: count / 2)
+        let candidateOffsets = [0, 40, -40, 80, -80, 120, -120]
+
+        for offset in candidateOffsets {
+            guard let splitIndex = index(midpoint, offsetBy: offset, limitedBy: endIndex) else {
+                continue
+            }
+
+            let suffix = self[splitIndex...]
+            if let range = suffix.range(of: #"</p>|<br\s*/?>|</div>|</li>"#, options: .regularExpression) {
+                let actualIndex = range.upperBound
+                let firstHalf = String(self[..<actualIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+                let secondHalf = String(self[actualIndex...]).trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if !firstHalf.isEmpty, !secondHalf.isEmpty {
+                    return [firstHalf, secondHalf]
+                }
+            }
+        }
+
+        let firstHalf = String(self[..<midpoint]).trimmingCharacters(in: .whitespacesAndNewlines)
+        let secondHalf = String(self[midpoint...]).trimmingCharacters(in: .whitespacesAndNewlines)
+        return [firstHalf, secondHalf].filter { !$0.isEmpty }
+    }
+}
+
+private extension Array where Element == String {
+    func splitIntoBalancedSections() -> [String] {
+        guard count >= 2 else {
+            return self
+        }
+
+        let midpoint = count / 2
+        let firstHalf = self[..<midpoint].joined()
+        let secondHalf = self[midpoint...].joined()
+
+        return [firstHalf, secondHalf].filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     }
 }
 
@@ -252,6 +350,50 @@ private struct ApplicationActionsView: View {
 //                    Link("Website", destination: link)
 //                        .buttonStyle(.bordered)
 //                }
+            }
+        }
+    }
+
+    private func openApplicationTarget() {
+        let application = job.application.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !application.isEmpty else {
+            return
+        }
+
+        if application.contains("@"), let url = URL(string: "mailto:\(application)") {
+            openURL(url)
+            return
+        }
+
+        if let url = URL(string: application) {
+            openURL(url)
+        }
+    }
+}
+
+private struct DescriptionActionRow: View {
+    let job: JobListing
+    @ObservedObject var savedJobsStore: SavedJobsStore
+    @Environment(\.openURL) private var openURL
+
+    var body: some View {
+        HStack {
+            Button(savedJobsStore.contains(job) ? "Saved" : "Save Job") {
+                savedJobsStore.toggle(job)
+            }
+            .buttonStyle(.bordered)
+
+            ShareLink(item: job.link) {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+            .buttonStyle(.bordered)
+
+            if !job.application.isEmpty {
+                Button("Apply Now") {
+                    openApplicationTarget()
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(BrandPalette.orange)
             }
         }
     }
